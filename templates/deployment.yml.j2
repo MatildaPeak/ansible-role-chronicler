@@ -1,0 +1,56 @@
+---
+
+{% if 'apps.openshift.io' in api_groups %}
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+{% else %}
+apiVersion: apps/v1
+kind: Deployment
+{% endif %}
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+  labels:
+    app: {{ name }}
+    service: {{ name }}
+spec:
+  replicas: 1
+{% if 'apps.openshift.io' in api_groups %}
+  selector:
+    app: {{ name }}
+    service: {{ name }}
+{% else %}
+  selector:
+    matchLabels:
+      app: {{ name }}
+      service: {{ name }}
+{% endif %}
+  template:
+
+    metadata:
+      labels:
+        app: {{ name }}
+        service: {{ name }}
+
+    spec:
+
+      containers:
+
+      - image: registry.gitlab.com/matilda.peak/chronicler{{ image_suffix }}:{{ image_tag }}
+        name: chronicler
+        imagePullPolicy: {{ image_pull_policy }}
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        env:
+        - name: OUTBOUND_PORT
+          value: "{{ outbound_port }}"
+        - name: RUNNER_KEY
+          value: "{{ runner_key }}"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 32Mi
+          limits:
+            cpu: 1000m
+            memory: 128Mi
