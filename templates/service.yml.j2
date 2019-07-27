@@ -10,8 +10,8 @@ metadata:
     service: {{ name }}
 spec:
   ports:
-  - name: chronicler
-    port: {{ service_port }}
+  - name: inbound
+    port: {{ inbound_port }}
     protocol: TCP
     targetPort: 9090
   selector:

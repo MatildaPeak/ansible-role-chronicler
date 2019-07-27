@@ -1,18 +1,15 @@
 ---
 
-# Create the namespace?
-create_namespace: yes
-
 # The image tag and pull policy
 image_tag: stable
 image_pull_policy: IfNotPresent
 
 # The port to expose the application service on
-service_port: 9090
+inbound_port: 9090
 # Port for outbound connections
 outbound_port: 9090
 # The runner key.
-# Runners present this toi gain connections
+# Runners present this to successfully obtain connections
 runner_key: got20190415
 
 # To uninstall from the cluster

@@ -1,19 +1,13 @@
 ---
 
+# Our api_groups variable may be expected in our template files.
+# It's used to dynamically reconfigure the kubernetes objects
+# mainly based on whether we're deploying to native Kubernetes
+# or OpensShift.
+
 - name: Get information about the cluster
   set_fact:
     api_groups: "{{ lookup('k8s', cluster_info='api_groups') }}"
-
-- name: Set namespace state={{ state }}
-  k8s:
-    state: "{{ state }}"
-    definition: "{{ lookup('template', item.name)|from_yaml }}"
-  when:
-  - create_namespace|bool
-  - item.api_exists|default(True)
-  loop:
-  - name: namespace.yml.j2
-    api_exists: "{{ True if 'networking.k8s.io' in api_groups else False }}"
 
 - name: Set objects state={{ state }}
   k8s:
