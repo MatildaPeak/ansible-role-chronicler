@@ -1,7 +1,7 @@
 ---
 
 # Our api_groups variable may be expected in our template files.
-# It's used to dynamically reconfigure the kubernetes objects
+# It's used to dynamically reconfigure the Kubernetes objects
 # mainly based on whether we're deploying to native Kubernetes
 # or OpenShift.
 

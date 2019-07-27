@@ -1,5 +1,5 @@
-matildapeak.chronicler
-======================
+Ansible Role - matildapeak.chronicler
+=====================================
 
 A Role for the installation of the Matilda Peak **chronicler** application
 into a Kubernetes (or OpenShift) cluster.
@@ -12,9 +12,6 @@ Requirements
 Role Variables
 --------------
 
-    # Create the namespace?
-    create_namespace: yes
-    
     # The image tag and pull policy
     image_tag: stable
     image_pull_policy: IfNotPresent
@@ -55,7 +52,6 @@ cluster and that you have sufficient permissions in the `chronicler` namespace.
         vars:
           image_tag: latest
           image_pull_policy: Always
-          create_namespace: no
 
 >   When deploying to Kubernetes a `chronicler` namespace is created by default.
 
