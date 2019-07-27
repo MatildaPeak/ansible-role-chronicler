@@ -53,8 +53,6 @@ cluster and that you have sufficient permissions in the `chronicler` namespace.
           image_tag: latest
           image_pull_policy: Always
 
->   When deploying to Kubernetes a `chronicler` namespace is created by default.
-
 License
 -------
 
