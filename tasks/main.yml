@@ -3,7 +3,7 @@
 # Our api_groups variable may be expected in our template files.
 # It's used to dynamically reconfigure the kubernetes objects
 # mainly based on whether we're deploying to native Kubernetes
-# or OpensShift.
+# or OpenShift.
 
 - name: Get information about the cluster
   set_fact:
