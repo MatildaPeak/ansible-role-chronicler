@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Run from a Python virtual environment...
+#
+#   python -m venv venv
+#   source venv/bin/activate
+#   pip install -r requirements.txt
+
 NS=chronicler
 if [ ! -d "roles" ]; then
     mkdir roles
