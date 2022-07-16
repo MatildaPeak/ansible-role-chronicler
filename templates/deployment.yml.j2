@@ -65,6 +65,12 @@ spec:
         # - capabilities: (drop ALL)
         # - seccompProfile: (type RuntimeDefault)
         # We also go further and set a specific user and group ID.
+        #
+        # Once set you should then be able to label the namespsace with:
+        #
+        #   kubectl label --overwrite ns chronicler \
+        #       pod-security.kubernetes.io/enforce=restricted \
+        #       pod-security.kubernetes.io/enforce-version=v1.24
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
