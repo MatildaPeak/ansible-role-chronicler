@@ -54,3 +54,24 @@ spec:
           limits:
             cpu: 1000m
             memory: 128Mi
+
+        # Define a securityContext to satisfy the post-v1.21 Security Standards.
+        # In v1.22 and later security can be restricted using namespace labels.
+        # In v1.25 and later it is restricted using namespace labels.
+        #
+        # Here we satisfy the built-in 'restricted' policy, which requires: -
+        # - allowPrivilegeEscalation: false
+        # - runAsNonRoot: true
+        # - capabilities: (drop ALL)
+        # - seccompProfile: (type RuntimeDefault)
+        # We also go further and set a specific user and group ID.
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop:
+            - ALL
+          seccompProfile:
+            type: RuntimeDefault
+          runAsUser: 1000
+          runAsGroup: 1000
